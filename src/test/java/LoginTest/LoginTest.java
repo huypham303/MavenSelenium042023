@@ -1,5 +1,6 @@
 package LoginTest;
 
+import common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,21 +11,8 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTest {
-    WebDriver webDriver;
+public class LoginTest extends BaseTest {
 
-    @BeforeMethod
-    public void createDriver(){
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-    }
-
-    @AfterMethod
-    public void closeDriver(){
-        webDriver.quit();
-    }
 
     @Test (priority = 1)
     public void testSeleniumeasy() throws InterruptedException {

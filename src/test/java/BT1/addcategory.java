@@ -1,33 +1,20 @@
 package BT1;
 
+import common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
-public class addcategory {
-    WebDriver webDriver;
-    @BeforeMethod
-    public void createDriver(){
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-    }
+public class addcategory extends BaseTest{
 
-    @AfterMethod
-    public void closeDriver(){
-        webDriver.quit();
-    }
-
-    public void login() throws InterruptedException {
+    @Test
+    public void loginSuccess() throws InterruptedException {
         webDriver.get("https://cms.anhtester.com/login");
 
         WebElement inputLogin = webDriver.findElement(By.xpath("//input[@id='email']"));
@@ -42,9 +29,9 @@ public class addcategory {
         Thread.sleep(2000);
     }
 
-    @Test
+    @Test(description = "Test")
     public void addCategory() throws InterruptedException {
-        login();
+        loginSuccess();
 
         WebElement products = webDriver.findElement(By.xpath("//span[normalize-space()='Products']"));
         products.click();

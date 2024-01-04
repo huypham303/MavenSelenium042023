@@ -4,6 +4,7 @@
     <test name="First Test">
         <classes>
             <class name="LoginTest.LoginTest" />
+            <class name="BT1.addcategory" />
         </classes>
     </test>
 </suite>
