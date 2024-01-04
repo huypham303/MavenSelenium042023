@@ -1,4 +1,4 @@
-package Locators;
+package BT_Locators;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
