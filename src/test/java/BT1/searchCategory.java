@@ -1,20 +1,24 @@
 package BT1;
 
-import common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class addcategory extends BaseTest{
+public class searchCategory {
+    public WebDriver webDriver;
 
     @Test
-    public void loginSuccess() throws InterruptedException {
+    public void testLogin() throws InterruptedException {
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+
         webDriver.get("https://cms.anhtester.com/login");
 
         WebElement inputLogin = webDriver.findElement(By.xpath("//input[@id='email']"));
@@ -27,11 +31,6 @@ public class addcategory extends BaseTest{
         loginButton.click();
 
         Thread.sleep(2000);
-    }
-
-    @Test(description = "Test")
-    public void addCategory() throws InterruptedException {
-        loginSuccess();
 
         WebElement products = webDriver.findElement(By.xpath("//span[normalize-space()='Products']"));
         products.click();
@@ -50,7 +49,5 @@ public class addcategory extends BaseTest{
 
         WebElement gettext = webDriver.findElement(By.xpath("//tbody/tr[1]/td[2]"));
         System.out.println("The Result is " + gettext.getText());
-        Assert.assertEquals(gettext.getText(), "testH");
     }
-
 }

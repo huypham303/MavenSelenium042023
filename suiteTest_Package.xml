@@ -4,6 +4,9 @@
     <test name="First Test">
         <packages>
             <package name="LoginTest"/>
+            <package name="BT1"/>
+            <package name="BT2"/>
+            <package name="BT3"/>
         </packages>
     </test>
 </suite>

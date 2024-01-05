@@ -3,8 +3,7 @@
 <suite name="Suite Test" verbose="1">
     <test name="First Test">
         <classes>
-            <class name="LoginTest.LoginTest" />
-            <class name="BT1.addcategory" />
+            <class name="BT3.editAndDeleteCategory" />
         </classes>
     </test>
 </suite>
