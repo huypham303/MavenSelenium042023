@@ -1,9 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite Test" verbose="1">
+
     <test name="First Test">
+        <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="BT3.editAndDeleteCategory" />
+            <class name="BT1_2_3.addCategory" />
         </classes>
     </test>
+
+
 </suite>

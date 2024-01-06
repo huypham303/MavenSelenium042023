@@ -6,7 +6,7 @@
             <package name="LoginTest"/>
             <package name="BT1"/>
             <package name="BT2"/>
-            <package name="BT3"/>
+            <package name="BT1_2_3"/>
         </packages>
     </test>
 </suite>

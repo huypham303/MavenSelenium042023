@@ -3,13 +3,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver webDriver;
 
-    @BeforeMethod
+    //@BeforeMethod
     public void createBrowser() {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         webDriver = new ChromeDriver();
@@ -18,8 +19,8 @@ public class BaseTest {
         webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
     }
 
-//    @BeforeMethod
-//    @Parameters({"browser"})
+    @BeforeMethod
+    @Parameters({"browser"})
     public void createBrowser(@Optional("chrome") String browserName) {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
 
@@ -37,6 +38,17 @@ public class BaseTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
     }
+
+    //Hàm Click
+    public void clickElement(String locator) {
+        webDriver.findElement(By.xpath(locator)).click();
+    }
+
+    //Hàm cho Sendkeys
+    public void setText(String locator, String text) {
+        webDriver.findElement(By.xpath(locator)).sendKeys(text);
+    }
+
 
     @AfterMethod
     public void closeBrowser() {
