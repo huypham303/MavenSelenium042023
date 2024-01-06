@@ -49,21 +49,24 @@ public class addCategory extends BaseTest{
 
         // add new category information
         setText(LocatorCMS.nameTxtCategory, "testH" + getRandomInt(1,100));
-        String newCategoryname = webDriver.findElement(By.xpath(LocatorCMS.nameTxtCategory)).getAttribute("value");
-        System.out.println("The New Category is " + newCategoryname);
+        WebElement newCategoryname = webDriver.findElement(By.xpath(LocatorCMS.nameTxtCategory));
+        String newCategoryName = newCategoryname.getText();
+        System.out.println("The New Category is " + newCategoryname.getText());
 
         clickElement(LocatorCMS.saveButtonCategory);
 
         //search the new category name
-        setText(LocatorCMS.searchCategory , newCategoryname);
+
+        setText(LocatorCMS.searchCategory , newCategoryName);
 
         sleep(2);
 
         WebElement getNewCategoryname = webDriver.findElement(By.xpath(LocatorCMS.getNameCategory));
         getNewCategoryname.getText();
+        System.out.println("search category name after add: " + getNewCategoryname);
         Assert.assertTrue(webDriver.findElement(By.xpath(LocatorCMS.getNameCategory)).isDisplayed(),
                 "Not Found The New Category");
-        System.out.println("search category name after add" + getNewCategoryname);
+
 
         //softAssert.assertAll();
     }
