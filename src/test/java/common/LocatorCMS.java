@@ -23,5 +23,4 @@ public class LocatorCMS {
     public static String deleteCategoryButtonIn = "//a[@id='delete-link']";
     public static String nothingFoundCategoryMess = "//td[normalize-space()='Nothing found']";
 
-
 }

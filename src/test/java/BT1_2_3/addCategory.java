@@ -40,7 +40,7 @@ public class addCategory extends BaseTest{
     }
 
     @Test(priority = 2, description = "Test add Category")
-    public void addCategory() throws InterruptedException {
+    public void addCategoryName() throws InterruptedException {
         loginSuccess();
 
         clickElement(LocatorCMS.sidebarProducts);
@@ -48,22 +48,21 @@ public class addCategory extends BaseTest{
         clickElement(LocatorCMS.addNewCategoryButton);
 
         // add new category information
-        setText(LocatorCMS.nameTxtCategory, "testH" + getRandomInt(1,100));
-        WebElement newCategoryname = webDriver.findElement(By.xpath(LocatorCMS.nameTxtCategory));
-        String newCategoryName = newCategoryname.getText();
-        System.out.println("The New Category is " + newCategoryname.getText());
+        String newName = "testH" + getRandomInt(1,100);
+        System.out.println("The New Category is " + newName);
+        setText(LocatorCMS.nameTxtCategory, newName);
+
 
         clickElement(LocatorCMS.saveButtonCategory);
 
         //search the new category name
 
-        setText(LocatorCMS.searchCategory , newCategoryName);
+        setText(LocatorCMS.searchCategory , newName + Keys.ENTER);
 
         sleep(2);
 
         WebElement getNewCategoryname = webDriver.findElement(By.xpath(LocatorCMS.getNameCategory));
-        getNewCategoryname.getText();
-        System.out.println("search category name after add: " + getNewCategoryname);
+        System.out.println("search category name after add: " + getNewCategoryname.getText());
         Assert.assertTrue(webDriver.findElement(By.xpath(LocatorCMS.getNameCategory)).isDisplayed(),
                 "Not Found The New Category");
 
@@ -85,26 +84,25 @@ public class addCategory extends BaseTest{
         WebElement updatedCategoryName = webDriver.findElement(By.xpath(LocatorCMS.nameTxtCategory));
         updatedCategoryName.clear();
 
-        setText(LocatorCMS.nameTxtCategory, "testH" + getRandomInt(1,100));
-        WebElement updatedCategoryNameString = webDriver.findElement(By.xpath(LocatorCMS.nameTxtCategory));
-        String updateName = updatedCategoryNameString.getText();
-        System.out.println("Update the category name: " + updatedCategoryNameString);
-
+        String newName = "testH" + getRandomInt(1,100);
+        System.out.println("Update the category name: " + newName);
+        WebElement nameCategory = webDriver.findElement(By.xpath(LocatorCMS.nameTxtCategory));
+        nameCategory.clear();
+        setText(LocatorCMS.nameTxtCategory, newName);
         Assert.assertTrue(updatedCategoryName.isDisplayed(), "Not Found the category name! try Again");
 
         clickElement(LocatorCMS.saveButtonCategory);
         clickElement(LocatorCMS.categoryList);
 
         //search the updated category name
-        setText(LocatorCMS.searchCategory , updateName);
+        setText(LocatorCMS.searchCategory , newName + Keys.ENTER);
 
         sleep(2);
 
         WebElement getNewCategoryname = webDriver.findElement(By.xpath(LocatorCMS.getNameCategory));
-        getNewCategoryname.getText();
         Assert.assertTrue(getNewCategoryname.isDisplayed(),
                 "Not Found The New Category");
-        System.out.println("search category name after edit" + getNewCategoryname);
+        System.out.println("search category name after edit: " + getNewCategoryname.getText());
 
         //softAssert.assertAll();
     }
@@ -138,10 +136,9 @@ public class addCategory extends BaseTest{
         // search the category name after delete
         setText(LocatorCMS.searchCategory,  nameCategory + Keys.ENTER);
 
-        sleep(2);
+        sleep(5);
 
         WebElement nothingFoundCategoryMess = webDriver.findElement(By.xpath(LocatorCMS.nothingFoundCategoryMess));
-        nothingFoundCategoryMess.getText();
         Assert.assertTrue(nothingFoundCategoryMess.isDisplayed(), "Delete Fail");
 
         //softAssert.assertAll();
