@@ -1,8 +1,12 @@
 package common;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import javax.imageio.ImageIO;
@@ -59,6 +63,36 @@ public class BaseTest {
     public void clearText(String locator) {
         webDriver.findElement(By.xpath(locator)).clear();
     }
+
+    //Chờ đợi trang load xong mới thao tác
+    public void waitForPageLoaded() {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(30), Duration.ofMillis(500));
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+
+        //Wait for Javascript to load
+        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                return js.executeScript("return document.readyState").toString().equals("complete");
+            }
+        };
+
+        //Check JS is Ready
+        boolean jsReady = js.executeScript("return document.readyState").toString().equals("complete");
+
+        //Wait Javascript until it is Ready!
+        if (!jsReady) {
+            System.out.println("Javascript is NOT Ready.");
+            //Wait for Javascript to load
+            try {
+                wait.until(jsLoad);
+            } catch (Throwable error) {
+                error.printStackTrace();
+                Assert.fail("FAILED. Timeout waiting for page load.");
+            }
+        }
+    }
+
     // Get random number
     public static int getRandomInt(int min, int max) {
         Random random = new Random();
